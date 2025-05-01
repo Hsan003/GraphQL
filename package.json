@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@graphql-tools/schema": "10.0.23",
+    "@graphql-yoga/render-graphiql": "^5.13.4",
     "@types/node": "^22.15.3",
     "cross-env": "^7.0.3",
     "graphql": "16.11.0",
