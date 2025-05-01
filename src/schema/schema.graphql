@@ -1,8 +1,14 @@
 type Query {
   allCvs: [Cv!]
-  getCv(id: Int!): Cv
-  getCvSkills(id: Int!): [Skill!]
-  getCvOwner(id: Int!): User
+  getCv(id: String!): Cv
+  getCvSkills(id: String!): [Skill!]
+  getCvOwner(id: String!): User
+}
+
+type Mutation {
+  addCv(input: AddCvInput!): Cv
+  updateCv(input: UpdateCvInput!): Cv
+  deleteCv(id: String!): Boolean
 }
 
 enum Role {
@@ -11,21 +17,38 @@ enum Role {
 }
 
 type Cv {
-  id: Int!
+  id: String!
   name: String!
   age: Int!
   job: String!
-  ownerId: Int!
+  ownerId: String!
 }
 
 type User {
-  id: Int!
+  id: String!
   name: String!
   email: String!
   role: Role!
 }
 
 type Skill {
-  id: Int!
+  id: String!
   designation: String!
+}
+
+input AddCvInput {
+  name: String!
+  age: Int!
+  job: String!
+  ownerId: String!
+  skillIds: [String!]!
+}
+
+input UpdateCvInput {
+  id: String!
+  name: String
+  age: Int
+  job: String
+  ownerId: String
+  skillIds: [String!]
 }

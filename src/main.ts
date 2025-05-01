@@ -4,6 +4,7 @@ import { Query } from './resolvers/Query';
 import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
 import { DbContext } from './types';
 import { dbContext } from './db';
+import {Mutation} from "./resolvers/Mutation";
 const fs = require('fs');
 const path = require('path');
 
@@ -14,6 +15,7 @@ export const schema = createSchema<DbContext>({
   ),
   resolvers: {
     Query,
+    Mutation,
   },
 });
 

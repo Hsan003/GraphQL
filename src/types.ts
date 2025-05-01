@@ -4,29 +4,29 @@ export enum Role {
 }
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   role: Role;
 }
 
 export interface Skill {
-  id: number;
+  id: string;
   designation: string;
 }
 
 export interface Cv {
-  id: number;
+  id: string;
   name: string;
   age: number;
   job: string;
-  ownerId: number;
+  ownerId: string;
 }
 
 export interface CvSkill {
-  id: number;
-  cvId: number;
-  skillId: number;
+  id: string;
+  cvId: string;
+  skillId: string;
 }
 
 export interface DbContext {
