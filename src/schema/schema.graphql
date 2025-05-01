@@ -15,8 +15,7 @@ type Cv {
   name: String!
   age: Int!
   job: String!
-  owner: User!
-  skills: [Skill!]
+  ownerId: Int!
 }
 
 type User {
@@ -24,7 +23,6 @@ type User {
   name: String!
   email: String!
   role: Role!
-  cvs: [Cv!]
 }
 
 type Skill {
