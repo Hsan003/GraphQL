@@ -5,11 +5,11 @@ export const Query = {
     return context.cvs;
   },
 
-  getCv: (_parent: unknown, args: { id: number }, context: DbContext) => {
+  getCv: (_parent: unknown, args: { id: string }, context: DbContext) => {
     return context.cvs.find((cv) => cv.id === args.id);
   },
 
-  getCvSkills: (_parent: unknown, args: { id: number }, context: DbContext) => {
+  getCvSkills: (_parent: unknown, args: { id: string }, context: DbContext) => {
     const cvSkillLinks = context.cvSkills.filter(
       (link) => link.cvId === args.id
     );
@@ -18,7 +18,7 @@ export const Query = {
     );
   },
 
-  getCvOwner: (_parent: unknown, args: { id: number }, context: DbContext) => {
+  getCvOwner: (_parent: unknown, args: { id: string }, context: DbContext) => {
     const cv = context.cvs.find((cv) => cv.id === args.id);
     if (!cv) return null;
     return context.users.find((user) => user.id === cv.ownerId);
