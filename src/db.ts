@@ -1,4 +1,5 @@
 import { Cv, Skill, User, Role, CvSkill, DbContext } from './types';
+import { PubSub } from 'graphql-subscriptions';
 
 export const users: User[] = [
   { id: '1', name: 'Amir', email: 'amir@insat.tn', role: Role.ADMIN },
@@ -33,4 +34,6 @@ export const cvSkills: CvSkill[] = [
   { id: '7', cvId: '4', skillId: '2' },
 ];
 
-export const dbContext: DbContext = { users, cvs, skills, cvSkills };
+const pubSub = new PubSub();
+
+export const dbContext: DbContext = { users, cvs, skills, cvSkills , pubSub };

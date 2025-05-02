@@ -52,3 +52,9 @@ input UpdateCvInput {
   ownerId: String
   skillIds: [String!]
 }
+
+type Subscription {
+  cvAdded: Cv!
+  cvUpdated: Cv!
+  cvDeleted: String!
+}

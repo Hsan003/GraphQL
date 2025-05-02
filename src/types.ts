@@ -1,3 +1,5 @@
+import { PubSub } from "graphql-subscriptions";
+
 export enum Role {
   USER = 'USER',
   ADMIN = 'ADMIN',
@@ -34,4 +36,5 @@ export interface DbContext {
   cvs: Cv[];
   skills: Skill[];
   cvSkills: CvSkill[];
+  pubSub: PubSub;
 }
