@@ -1,0 +1,25 @@
+# query {
+#   allCvs{
+#     name
+#     age
+#     id
+#     job
+#   }
+# }
+# mutation UpdateCv($input: UpdateCvInput!) {
+#   updateCv(data: $input) {
+#     id
+#     name
+#     age
+#     job
+#   }
+# }
+
+subscription {
+  cvUpdated {
+    id
+    name
+    age
+    job
+  }
+}

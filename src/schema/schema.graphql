@@ -9,6 +9,17 @@ enum Role {
   ADMIN
   USER
 }
+type Mutation {
+  createCv(data: CreateCvInput!): Cv!
+  updateCv(data: UpdateCvInput!): Cv!
+  deleteCv(id: Int!): Cv!
+}
+
+type Subscription {
+  userCreated: User!
+  cvCreated: Cv!
+  skillCreated: Skill!
+}
 
 type Cv {
   id: Int!
@@ -16,6 +27,7 @@ type Cv {
   age: Int!
   job: String!
   ownerId: Int!
+  skillsId: [Int!]!
 }
 
 type User {
@@ -28,4 +40,26 @@ type User {
 type Skill {
   id: Int!
   designation: String!
+}
+
+input CreateCvInput {
+  name: String!
+  age: Int!
+  job: String!
+  ownerId: Int!
+  skillIds: [Int!]!
+}
+
+input UpdateCvInput {
+  id: Int!
+  name: String
+  age: Int
+  job: String
+  ownerId: Int
+  skillIds: [Int!]
+}
+type Subscription {
+  cvCreated: Cv!
+  cvUpdated: Cv!
+  cvDeleted: Cv!
 }
