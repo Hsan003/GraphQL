@@ -1,4 +1,4 @@
-import { createYoga, createSchema } from 'graphql-yoga';
+import { createYoga, createSchema ,createPubSub } from 'graphql-yoga';
 import { createServer } from 'http';
 import { Query } from './resolvers/Query';
 import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
@@ -8,6 +8,8 @@ import {Mutation} from "./resolvers/Mutation";
 import { Subscription } from './resolvers/Subscription';
 const fs = require('fs');
 const path = require('path');
+
+const pubSub = createPubSub();
 
 export const schema = createSchema<DbContext>({
   typeDefs: fs.readFileSync(
@@ -25,7 +27,10 @@ function main() {
   const yoga = createYoga<DbContext>({
     schema: schema,
     renderGraphiQL,
-    context: dbContext,
+    context: () => ({
+      ...dbContext,
+      pubSub, 
+    }),
   });
   const server = createServer(yoga);
   server.listen(4000, () => {

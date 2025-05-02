@@ -1,6 +1,5 @@
 import { DbContext } from '../types';
 import { v4 as uuidv4 } from 'uuid';
-import { pubSub } from '../pubSubInstance';
 
 
 export const Mutation = {
@@ -30,7 +29,7 @@ export const Mutation = {
         skillIds.forEach((skillId, index) => {
             context.cvSkills.push({ id: uuidv4(), cvId: newCvId, skillId });
         });
-        pubSub.publish('cvAdded', { cvAdded: newCv });
+        context.pubSub.publish('CV_ADDED', newCv);
         return newCv;
     },
 
@@ -68,7 +67,7 @@ export const Mutation = {
         if (age !== undefined) cv.age = age;
         if (job) cv.job = job;
         if (ownerId) cv.ownerId = ownerId;
-        pubSub.publish('cvUpdated', { cvUpdated: cv });
+        context.pubSub.publish('CV_UPDATED', cv);
         return cv;
     },
 
@@ -82,7 +81,7 @@ export const Mutation = {
 
         // Supprimer les liens skills
         context.cvSkills = context.cvSkills.filter((link) => link.cvId !== args.id);
-        pubSub.publish('cvDeleted', { cvDeleted: deletedId });
+        context.pubSub.publish('CV_DELETED', deletedId);
         return true;
     },
 };

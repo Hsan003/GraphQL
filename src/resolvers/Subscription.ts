@@ -1,16 +1,17 @@
-import { pubSub } from '../pubSubInstance';
-
 export const Subscription = {
   cvAdded: {
-    subscribe: () => pubSub.subscribe('cvAdded'),
-    resolve:   (payload: { cvAdded: any; }) => payload.cvAdded,
+    subscribe: (_parent: unknown, _args: unknown, { pubSub }: any) =>
+      pubSub.subscribe('CV_ADDED'),
+    resolve: (payload: any) => payload,
   },
   cvUpdated: {
-    subscribe: () => pubSub.subscribe('cvUpdated'),
-    resolve:   (payload: { cvUpdated: any; }) => payload.cvUpdated,
+    subscribe: (_parent: unknown, _args: unknown, { pubSub }: any) =>
+      pubSub.subscribe('CV_UPDATED'),
+    resolve: (payload: any) => payload,
   },
   cvDeleted: {
-    subscribe: () => pubSub.subscribe('cvDeleted'),
-    resolve:   (payload: { cvDeleted: any; }) => payload.cvDeleted,
+    subscribe: (_parent: unknown, _args: unknown, { pubSub }: any) =>
+      pubSub.subscribe('CV_DELETED'),
+    resolve: (payload: any) => payload,
   },
 };
